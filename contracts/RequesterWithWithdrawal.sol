@@ -9,15 +9,15 @@ contract Requester is RrpRequesterV0, Ownable {
     mapping(bytes32 => bool) public incomingFulfillments;
     mapping(bytes32 => int256) public fulfilledData;
 
-// Make sure you specify the right _rrpAddress for your chain while deploying the contract.
+    // Make sure you specify the right _rrpAddress for your chain while deploying the contract.
     constructor(address _rrpAddress) RrpRequesterV0(_rrpAddress) {}
 
-// To receive funds from the sponsor wallet and send them to the owner.
+    // To receive funds from the sponsor wallet and send them to the owner.
     receive() external payable {
         payable(owner()).transfer(address(this).balance);
     }
 
-// The main makeRequest function that will trigger the Airnode request.
+    // The main makeRequest function that will trigger the Airnode request.
     function makeRequest(
         address airnode,
         bytes32 endpointId,
@@ -48,7 +48,7 @@ contract Requester is RrpRequesterV0, Ownable {
         fulfilledData[requestId] = decodedData;
     }
 
-// To withdraw funds from the sponsor wallet to the contract.
+    // To withdraw funds from the sponsor wallet to the contract.
     function withdraw(address airnode, address sponsorWallet) external onlyOwner {
         airnodeRrp.requestWithdrawal(
         airnode,
