@@ -11,12 +11,12 @@ contract QrngExample is RrpRequesterV0, Ownable {
     event ReceivedUint256Array(bytes32 indexed requestId, uint256[] response);
     event WithdrawalRequested(address indexed airnode, address indexed sponsorWallet);
 
-    address public airnode;                 /// @param The address of the QRNG Airnode
-    bytes32 public endpointIdUint256;       /// @param The endpoint ID for requesting a single random number
-    bytes32 public endpointIdUint256Array;  /// @param The endpoint ID for requesting an array of random numbers
-    address public sponsorWallet;           /// @param The wallet that will cover the gas costs of the request
-    uint256 public _qrngUint256;            /// @param The random number returned by the QRNG Airnode
-    uint256[] public _qrngUint256Array;     /// @param The array of random numbers returned by the QRNG Airnode
+    address public airnode;                 /// The address of the QRNG Airnode
+    bytes32 public endpointIdUint256;       /// The endpoint ID for requesting a single random number
+    bytes32 public endpointIdUint256Array;  /// The endpoint ID for requesting an array of random numbers
+    address public sponsorWallet;           /// The wallet that will cover the gas costs of the request
+    uint256 public _qrngUint256;            /// The random number returned by the QRNG Airnode
+    uint256[] public _qrngUint256Array;     /// The array of random numbers returned by the QRNG Airnode
 
     mapping(bytes32 => bool) public expectingRequestWithIdToBeFulfilled;
 
@@ -37,7 +37,7 @@ contract QrngExample is RrpRequesterV0, Ownable {
 
     /// @notice To receive funds from the sponsor wallet and send them to the owner.
     receive() external payable {
-        payable(owner()).transfer(address(this).balance);
+        payable(owner()).transfer(msg.value);
         emit WithdrawalRequested(airnode, sponsorWallet);
     }
 
