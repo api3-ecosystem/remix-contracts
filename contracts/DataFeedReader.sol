@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.17;
 
-import "@openzeppelin/contracts/access/Ownable.sol";
-import "@api3/contracts/v0.8/interfaces/IProxy.sol";
+import "@openzeppelin/contracts@4.9.5/access/Ownable.sol";
+import "@api3/airnode-protocol-v1/contracts/api3-server-v1/proxies/interfaces/IProxy.sol";
 
 contract DataFeedReaderExample is Ownable {
     // The proxy contract address obtained from the API3 Market UI.
