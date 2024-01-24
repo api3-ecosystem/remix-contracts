@@ -2,7 +2,7 @@
 pragma solidity 0.8.9;
 
 import "@api3/airnode-protocol/contracts/rrp/requesters/RrpRequesterV0.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts@4.9.5/access/Ownable.sol";
 
 // A Requester that will return the requested data by calling the specified Airnode.
 contract Requester is RrpRequesterV0, Ownable {
